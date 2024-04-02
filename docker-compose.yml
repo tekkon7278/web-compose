@@ -20,7 +20,7 @@ services:
 
   web:
     build:
-      context:./nginx
+      context: ./nginx
       args:
         - APP_DOMAIN="test.tkng.site"
     ports:
