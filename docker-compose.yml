@@ -1,0 +1,40 @@
+version: "3.8"
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/28
+
+services:
+  php:
+    build:
+      context: ./php
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - /srv/docker/mount/php/:/var/www/app/
+    networks:
+      net:
+        aliases:
+          - php
+
+  web:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      TZ: Asia/Tokyo
+      args:
+        - APP_DOMAIN="test.tkng.site"
+    volumes:
+      - /srv/docker/mount/web/:/usr/share/nginx/html/
+      - /srv/docker/mount/certs/:/etc/nginx/ssl/
+    networks:
+      net:
+        aliases:
+          - web
+    depends_on:
+      - php
