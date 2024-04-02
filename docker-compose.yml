@@ -22,7 +22,7 @@ services:
     build:
       context: ./nginx
       args:
-        - APP_DOMAIN="test.tkng.site"
+        - APP_DOMAIN=test.tkng.site
     ports:
       - "80:80"
       - "443:443"
