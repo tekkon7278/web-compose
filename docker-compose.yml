@@ -26,7 +26,7 @@ services:
     environment:
       TZ: Asia/Tokyo
       args:
-        - APP_DOMAIN="test.tkng.site"
+        APP_DOMAIN="test.tkng.site"
     volumes:
       - /srv/docker/mount/web/:/usr/share/nginx/html/
       - /srv/docker/mount/certs/:/etc/nginx/ssl/
