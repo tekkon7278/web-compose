@@ -19,14 +19,15 @@ services:
           - php
 
   web:
-    build: ./nginx
+    build:
+      context:./nginx
+      args:
+        - APP_DOMAIN="test.tkng.site"
     ports:
       - "80:80"
       - "443:443"
     environment:
       TZ: Asia/Tokyo
-      args:
-        APP_DOMAIN: "test.tkng.site"
     volumes:
       - /srv/docker/mount/web/:/usr/share/nginx/html/
       - /srv/docker/mount/certs/:/etc/nginx/ssl/
